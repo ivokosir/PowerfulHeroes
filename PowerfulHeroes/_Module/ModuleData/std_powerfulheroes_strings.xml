@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+	<tags>
+		<tag language="English" />
+	</tags>
+	<strings>
+		<string id="PH_DisplayName" text="Powerful Heroes" />
+		<string id="PH_Damage_Multiplier_Group" text="Damage Recieved Multiplier" />
+		<string id="PH_Damage_Multiplier_Group_Desc" text="Changes damage recieved, like in difficulty settings, but for every hero." />
+		<string id="PH_Hero_Damage_Multiplier" text="Hero Damage Recieved Multiplier" />
+		<string id="PH_Hero_Damage_Multiplier_Desc" text="This value is used to calculate the damage every hero (Companion, Noble, Player...) receives." />
+		<string id="PH_Horse_Damage_Multiplier" text="Horse Damage Recieved Multiplier" />
+		<string id="PH_Horse_Damage_Multiplier_Desc" text="This value is used to calculate the damage hero's horse recieves." />
+		<string id="PH_HitPoints_Multiplier_Group" text="HitPoints Multiplier" />
+		<string id="PH_HitPoints_Multiplier_Group_Desc" text="Changes hitpoints in battle. Does not affect campaign. Usefull when you want to survive long, but still be staggered." />
+		<string id="PH_Hero_HitPoints_Multiplier" text="Hero HitPoints Multiplier" />
+		<string id="PH_Hero_HitPoints_Multiplier_Desc" text="This value is used to calculate hero hitpoints in battle. Heroes will still take same damage but will have more health." />
+		<string id="PH_Horse_HitPoints_Multiplier" text="Horse HitPoints Multiplier" />
+		<string id="PH_Horse_HitPoints_Multiplier_Desc" text="This value is used to calculate hero's horse hitpoints in battle. Notice, this is calculated on start of a battle, so even if dismounted changes will persist." />
+		<string id="PH_Debug" text="Debug" />
+		<string id="PH_Debug_Desc" text="Show debug info" />
+		<string id="PH_Logging" text="Logging" />
+	</strings>
+</base>
