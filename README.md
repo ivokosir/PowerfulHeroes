@@ -1,5 +1,9 @@
 # Powerful Heroes
 
+[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2882031565)
+
+[Nexus Mods](https://www.nexusmods.com/mountandblade2bannerlord/mods/3718)
+
 ## Description
 Ever felt like your companions are worse compared to your higher tier troops? Does it
 feel underwhelming when defeating enemy king in a one swing? This mod aims to fix that!
