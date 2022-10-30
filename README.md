@@ -14,6 +14,6 @@ more powerfull while in battle.
 - Fully configurable settings through MCM
 - Tested on v1.0.0
 
-# Features
+# Screenshots
 ![Alt text](/screenshots/01.jpg?raw=true "Simple settings")
 ![Alt text](/screenshots/02.jpg?raw=true "Advanced settings")
