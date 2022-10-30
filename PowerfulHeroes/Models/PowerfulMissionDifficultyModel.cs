@@ -2,19 +2,17 @@
 
 namespace PowerfulHeroes.Models
 {
-    internal class PowerfulMissionDifficultyModel : SandBox.SandboxMissionDifficultyModel
+    internal class PowerfulMissionDifficultyModel : SandBox.GameComponents.SandboxMissionDifficultyModel
     {
         public override float GetDamageMultiplierOfCombatDifficulty(Agent agent, Agent? attackerAgent = null)
         {
             var initial = base.GetDamageMultiplierOfCombatDifficulty(agent, attackerAgent);
-            if (!Settings.Instance!.DamageMultiplierEnabled) return initial;
 
-            return Utils.GetAgentType(agent) switch
-            {
-                AgentType.Hero => initial * Settings.Instance!.DamageMultiplier,
-                AgentType.HeroHorse => initial * Settings.Instance!.HorseDamageMultiplier,
-                _ => initial,
-            };
+            var agentType = Utils.GetAgentType(agent);
+            if (agentType == AgentType.Other) return initial;
+
+            var multiplier = Utils.GetDamageMultiplier(agentType);
+            return initial * multiplier;
         }
     }
 }

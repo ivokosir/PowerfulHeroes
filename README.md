@@ -10,3 +10,4 @@ more powerfull while in battle.
 # Features
 - Hero/Horse Damage Recieved Multiplier -- This value is used to calculate the damage every hero or their horse recieves receives, very similar to native difficulty settings.
 - Hero/Horse HitPoints Multiplier -- Changes hitpoints in battle. Does not affect campaign. Usefull when you want to hero/horse survive longer, but still be staggered/reared.
+- Advanced settings -- Set different multipliers for player, ally heroes and enemy heroes.

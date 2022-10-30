@@ -53,16 +53,10 @@ namespace PowerfulHeroes
 
             CampaignGameStarter campaignGameStarter = (CampaignGameStarter)gameStarter;
 
-            if (Settings.Instance.HitPointMultiplierEnabled)
-            {
-                campaignGameStarter.AddBehavior(new PowerfulHealthBehavior());
-                Message.Debug("Loaded PowerfulHealthBehavior Behavior");
-            }
-            if (Settings.Instance.DamageMultiplierEnabled)
-            {
-                campaignGameStarter.AddModel(new PowerfulMissionDifficultyModel());
-                Message.Debug("Loaded PowerfulMissionDifficultyModel Model");
-            }
+            campaignGameStarter.AddBehavior(new PowerfulHealthBehavior());
+            Message.Debug("Loaded PowerfulHealthBehavior Behavior");
+            campaignGameStarter.AddModel(new PowerfulMissionDifficultyModel());
+            Message.Debug("Loaded PowerfulMissionDifficultyModel Model");
         }
     }
 }

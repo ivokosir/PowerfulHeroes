@@ -1,79 +1,142 @@
-﻿using MCM.Abstractions.Attributes;
+﻿using MCM.Abstractions;
+using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
-using MCM.Abstractions.Settings.Base;
-using MCM.Abstractions.Settings.Base.Global;
-using System;
+using MCM.Abstractions.Base.Global;
 using System.Collections.Generic;
-using TaleWorlds.Localization;
 
 namespace PowerfulHeroes
 {
     public class Settings : AttributeGlobalSettings<Settings>
     {
         public override string Id => Statics.InstanceID;
-        public override string DisplayName => $"{new TextObject("{=PH_DisplayName}" + Statics.DisplayName)} {typeof(Settings).Assembly.GetName().Version.ToString(3)}";
+        public override string DisplayName => $"{Statics.DisplayName} {typeof(Settings).Assembly.GetName().Version.ToString(3)}";
         public override string FolderName => Statics.ModuleFolder;
         public override string FormatType => Statics.FormatType;
 
-        [SettingPropertyBool("{=PH_Damage_Multiplier_Group}Damage Recieved Multiplier", IsToggle = true, RequireRestart = true,
-            HintText = "{=PH_Damage_Multiplier_Group_Desc}Changes damage recieved, like in difficulty settings, but for every hero.")]
-        [SettingPropertyGroup("{=PH_Damage_Multiplier_Group}Damage Recieved Multiplier")]
-        public bool DamageMultiplierEnabled { get; set; } = true;
+        [SettingPropertyBool("Simple settings", IsToggle = true, RequireRestart = false, HintText = "Simple settings that changes data for all heroes (Companion, Noble, Player...)")]
+        [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
+        public bool Simple
+        {
+            get => _Simple;
+            set
+            {
+                _Simple = value;
+                OnPropertyChanged(nameof(Advanced));
+            }
+        }
 
-        [SettingPropertyFloatingInteger("{=PH_Hero_Damage_Multiplier}Hero Damage Recieved Multiplier", 0.1f, 2.0f, "0%", RequireRestart = false,
-            HintText = "{=PH_Hero_Damage_Multiplier_Desc}This value is used to calculate the damage every hero (Companion, Noble, Player...) receives.")]
-        [SettingPropertyGroup("{=PH_Damage_Multiplier_Group}Damage Recieved Multiplier")]
+        private bool _Simple = true;
+
+        private const string DamageMultiplierName = "Damage Recieved Multiplier";
+
+        private const string DamageMultiplierHint = "This value is used to calculate the damage every hero receives, similar to difficulty in Native";
+
+        private const string HorseDamageMultiplierName = "Horse Damage Recieved Multiplier";
+
+        private const string HorseDamageMultiplierHint = "This value is used to calculate the damage hero's horse recieves";
+
+        private const string HitPointsMultiplierName = "HitPoints Multiplier";
+
+        private const string HitPointsMultiplierHint = "This value is used to calculate hero hitpoints in battle. Heroes will still take same damage but will have more health. If you increase this instead of lowering Damage Recieved Multiplier, hero will suffer the same amount of stagger as before the buff.";
+
+        private const string HorseHitPointsMultiplierName = "Horse HitPoints Multiplier";
+
+        private const string HorseHitPointsMultiplierHint = "This value is used to calculate hero's horse hitpoints in battle. Notice, this is calculated on start of a battle, so even if dismounted initial changes will persist.";
+
+        [SettingPropertyFloatingInteger(DamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 1, HintText = DamageMultiplierHint)]
+        [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
         public float DamageMultiplier { get; set; } = 0.7f;
 
-        [SettingPropertyFloatingInteger("{=PH_Horse_Damage_Multiplier}Horse Damage Recieved Multiplier", 0.1f, 2.0f, "0%", RequireRestart = false,
-            HintText = "{=PH_Horse_Damage_Multiplier_Desc}This value is used to calculate the damage hero's horse recieves.")]
-        [SettingPropertyGroup("{=PH_Damage_Multiplier_Group}Damage Recieved Multiplier")]
+        [SettingPropertyFloatingInteger(HorseDamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 2, HintText = HorseDamageMultiplierHint)]
+        [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
         public float HorseDamageMultiplier { get; set; } = 0.7f;
 
-        [SettingPropertyBool("{=PH_HitPoints_Multiplier_Group}HitPoints Multiplier", IsToggle = true, RequireRestart = true,
-            HintText = "{=PH_HitPoints_Multiplier_Group_Desc}Changes hitpoints in battle. Does not affect campaign. Usefull when you want to survive long, but still be staggered.")]
-        [SettingPropertyGroup("{=PH_HitPoints_Multiplier_Group}HitPoints Multiplier")]
-        public bool HitPointMultiplierEnabled { get; set; } = true;
-
-        [SettingPropertyFloatingInteger("{=PH_Hero_HitPoints_Multiplier}Hero HitPoints Multiplier", 0.5f, 10.0f, "0%", RequireRestart = false,
-            HintText = "{=PH_Hero_HitPoints_Multiplier_Desc}This value is used to calculate hero hitpoints in battle. Heroes will still take same damage but will have more health.")]
-        [SettingPropertyGroup("{=PH_HitPoints_Multiplier_Group}HitPoints Multiplier")]
+        [SettingPropertyFloatingInteger(HitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 3, HintText = HitPointsMultiplierHint)]
+        [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
         public float HitPointsMultiplier { get; set; } = 1.3f;
 
-        [SettingPropertyFloatingInteger("{=PH_Horse_HitPoints_Multiplier}Horse HitPoints Multiplier", 0.5f, 10.0f, "0%", RequireRestart = false,
-            HintText = "{=PH_Horse_HitPoints_Multiplier_Desc}This value is used to calculate hero's horse hitpoints in battle. Notice, this is calculated on start of a battle, so even if dismounted changes will persist.")]
-        [SettingPropertyGroup("{=PH_HitPoints_Multiplier_Group}HitPoints Multiplier")]
+        [SettingPropertyFloatingInteger(HorseHitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 4, HintText = HorseHitPointsMultiplierHint)]
+        [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
         public float HorseHitPointsMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyBool("{=PH_Debug}Debug", RequireRestart = true, HintText = "{=PH_Debug_Desc}Show debug info")]
-        [SettingPropertyGroup("{=PH_Logging}Logging")]
+        [SettingPropertyBool("Advanced settings", HintText = "Advanced settings, use this if you want to set different settings for a specific hero type (Player, Ally, Enemy)", IsToggle = true, RequireRestart = false)]
+        [SettingPropertyGroup("Advanced settings", GroupOrder = 2)]
+        public bool Advanced
+        {
+            get => !_Simple;
+            set
+            {
+                _Simple = !value;
+                OnPropertyChanged(nameof(Simple));
+            }
+        }
+
+        [SettingPropertyFloatingInteger(DamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 1, HintText = DamageMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Player", GroupOrder = 1)]
+        public float PlayerDamageMultiplier { get; set; } = 0.7f;
+
+        [SettingPropertyFloatingInteger(HorseDamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 2, HintText = HorseDamageMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Player", GroupOrder = 1)]
+        public float PlayerHorseDamageMultiplier { get; set; } = 0.7f;
+
+        [SettingPropertyFloatingInteger(HitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 3, HintText = HitPointsMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Player", GroupOrder = 1)]
+        public float PlayerHitPointsMultiplier { get; set; } = 1.3f;
+
+        [SettingPropertyFloatingInteger(HorseHitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 4, HintText = HorseHitPointsMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Player", GroupOrder = 1)]
+        public float PlayerHorseHitPointsMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger(DamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 1, HintText = DamageMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Ally Heroes", GroupOrder = 2)]
+        public float AllyDamageMultiplier { get; set; } = 0.7f;
+
+        [SettingPropertyFloatingInteger(HorseDamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 2, HintText = HorseDamageMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Ally Heroes", GroupOrder = 2)]
+        public float AllyHorseDamageMultiplier { get; set; } = 0.7f;
+
+        [SettingPropertyFloatingInteger(HitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 3, HintText = HitPointsMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Ally Heroes", GroupOrder = 2)]
+        public float AllyHitPointsMultiplier { get; set; } = 1.3f;
+
+        [SettingPropertyFloatingInteger(HorseHitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 4, HintText = HorseHitPointsMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Ally Heroes", GroupOrder = 2)]
+        public float AllyHorseHitPointsMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger(DamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 1, HintText = DamageMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Enemy Heroes", GroupOrder = 3)]
+        public float EnemyDamageMultiplier { get; set; } = 0.7f;
+
+        [SettingPropertyFloatingInteger(HorseDamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 2, HintText = HorseDamageMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Enemy Heroes", GroupOrder = 3)]
+        public float EnemyHorseDamageMultiplier { get; set; } = 0.7f;
+
+        [SettingPropertyFloatingInteger(HitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 3, HintText = HitPointsMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Enemy Heroes", GroupOrder = 3)]
+        public float EnemyHitPointsMultiplier { get; set; } = 1.3f;
+
+        [SettingPropertyFloatingInteger(HorseHitPointsMultiplierName, 0.5f, 10.0f, "0%", RequireRestart = false, Order = 4, HintText = HorseHitPointsMultiplierHint)]
+        [SettingPropertyGroup("Advanced settings/Enemy Heroes", GroupOrder = 3)]
+        public float EnemyHorseHitPointsMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyBool("Debug", RequireRestart = true, HintText = "Show debug info")]
         public bool Debug { get; set; } = false;
 
-        public override IDictionary<string, Func<BaseSettings>> GetAvailablePresets()
+        public override IEnumerable<ISettingsPreset> GetBuiltInPresets()
         {
-            IDictionary<string, Func<BaseSettings>>? basePresets = base.GetAvailablePresets();
-
-            basePresets.Add("Native all off", () => new Settings()
+            foreach (var preset in base.GetBuiltInPresets())
             {
-                DamageMultiplierEnabled = false,
+                yield return preset;
+            }
+
+            yield return new MemorySettingsPreset(Id, "native", "Native", () => new Settings
+            {
+                _Simple = true,
                 DamageMultiplier = 1.0f,
                 HorseDamageMultiplier = 1.0f,
-                HitPointMultiplierEnabled = false,
                 HitPointsMultiplier = 1.0f,
                 HorseHitPointsMultiplier = 1.0f,
             });
-
-            basePresets.Add("Native all on", () => new Settings()
-            {
-                DamageMultiplierEnabled = true,
-                DamageMultiplier = 1.0f,
-                HorseDamageMultiplier = 1.0f,
-                HitPointMultiplierEnabled = true,
-                HitPointsMultiplier = 1.0f,
-                HorseHitPointsMultiplier = 1.0f,
-            });
-
-            return basePresets;
         }
 
         public Settings()
