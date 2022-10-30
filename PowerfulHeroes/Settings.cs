@@ -13,20 +13,6 @@ namespace PowerfulHeroes
         public override string FolderName => Statics.ModuleFolder;
         public override string FormatType => Statics.FormatType;
 
-        [SettingPropertyBool("Simple settings", IsToggle = true, RequireRestart = false, HintText = "Simple settings that changes data for all heroes (Companion, Noble, Player...)")]
-        [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
-        public bool Simple
-        {
-            get => _Simple;
-            set
-            {
-                _Simple = value;
-                OnPropertyChanged(nameof(Advanced));
-            }
-        }
-
-        private bool _Simple = true;
-
         private const string DamageMultiplierName = "Damage Recieved Multiplier";
 
         private const string DamageMultiplierHint = "This value is used to calculate the damage every hero receives, similar to difficulty in Native";
@@ -42,6 +28,20 @@ namespace PowerfulHeroes
         private const string HorseHitPointsMultiplierName = "Horse HitPoints Multiplier";
 
         private const string HorseHitPointsMultiplierHint = "This value is used to calculate hero's horse hitpoints in battle. Notice, this is calculated on start of a battle, so even if dismounted initial changes will persist.";
+
+        private bool _Simple = true;
+
+        [SettingPropertyBool("Simple settings", IsToggle = true, RequireRestart = false, HintText = "Simple settings that changes data for all heroes (Companion, Noble, Player...)")]
+        [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
+        public bool Simple
+        {
+            get => _Simple;
+            set
+            {
+                _Simple = value;
+                OnPropertyChanged(nameof(Advanced));
+            }
+        }
 
         [SettingPropertyFloatingInteger(DamageMultiplierName, 0.1f, 2.0f, "0%", RequireRestart = false, Order = 1, HintText = DamageMultiplierHint)]
         [SettingPropertyGroup("Simple settings", GroupOrder = 1)]
@@ -119,7 +119,7 @@ namespace PowerfulHeroes
         [SettingPropertyGroup("Advanced settings/Enemy Heroes", GroupOrder = 3)]
         public float EnemyHorseHitPointsMultiplier { get; set; } = 1.0f;
 
-        [SettingPropertyBool("Debug", RequireRestart = true, HintText = "Show debug info")]
+        [SettingPropertyBool("Debug", RequireRestart = false, HintText = "Show debug info")]
         public bool Debug { get; set; } = false;
 
         public override IEnumerable<ISettingsPreset> GetBuiltInPresets()

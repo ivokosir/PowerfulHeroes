@@ -4,8 +4,6 @@ namespace PowerfulHeroes
 {
     public static class Message
     {
-        public static bool ShowDebug = false;
-
         private static void ShowMessage(string message, Color messageColor)
         {
             InformationManager.DisplayMessage(new InformationMessage($"{Statics.DisplayName} : {message}", messageColor));
@@ -23,7 +21,7 @@ namespace PowerfulHeroes
 
         public static void DisplayModLoadedMessage()
         {
-            if (ShowDebug)
+            if (Settings.Instance!.Debug)
             {
                 Info("Loaded");
             }
@@ -31,7 +29,7 @@ namespace PowerfulHeroes
 
         public static void Debug(string message)
         {
-            if (ShowDebug)
+            if (Settings.Instance!.Debug)
             {
                 ShowMessage(message, Color.ConvertStringToColor("#E6FF00FF"));
             }

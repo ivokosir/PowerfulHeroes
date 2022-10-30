@@ -34,7 +34,6 @@ namespace PowerfulHeroes
             }
             if (Settings.Instance is not null)
             {
-                Message.ShowDebug = Settings.Instance.Debug;
                 Message.Debug("Settings loaded successfully");
             }
             else

@@ -13,3 +13,7 @@ more powerfull while in battle.
 - Advanced settings -- Set different multipliers for player, ally heroes and enemy heroes.
 - Fully configurable settings through MCM
 - Tested on v1.0.0
+
+# Features
+![Alt text](/screenshots/01.jpg?raw=true "Simple settings")
+![Alt text](/screenshots/02.jpg?raw=true "Advanced settings")
