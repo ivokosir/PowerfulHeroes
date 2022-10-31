@@ -47,15 +47,15 @@ namespace PowerfulHeroes
         {
             base.OnGameStart(game, gameStarter);
 
-            if (game.GameType is not Campaign) return;
             if (Settings.Instance is null) return;
 
-            CampaignGameStarter campaignGameStarter = (CampaignGameStarter)gameStarter;
-
-            campaignGameStarter.AddBehavior(new PowerfulHealthBehavior());
-            Message.Debug("Loaded PowerfulHealthBehavior Behavior");
-            campaignGameStarter.AddModel(new PowerfulMissionDifficultyModel());
-            Message.Debug("Loaded PowerfulMissionDifficultyModel Model");
+            if (gameStarter is CampaignGameStarter campaignGameStarter)
+            {
+                campaignGameStarter.AddBehavior(new PowerfulHealthBehavior());
+                Message.Debug("Loaded PowerfulHealthBehavior Behavior");
+                campaignGameStarter.AddModel(new PowerfulMissionDifficultyModel());
+                Message.Debug("Loaded PowerfulMissionDifficultyModel Model");
+            }
         }
     }
 }

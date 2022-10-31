@@ -20,7 +20,7 @@ namespace PowerfulHeroes.CampaignBehaviors
                 agent.BaseHealthLimit *= multiplier;
                 agent.HealthLimit *= multiplier;
                 agent.Health *= multiplier;
-                Message.Debug($"{agentType} {health}/{healthLimit} -> {agent.Health}/{agent.HealthLimit}");
+                Message.Debug($"{agent.Name} ({agentType}) {health}/{healthLimit} -> {agent.Health}/{agent.HealthLimit}");
             }
 
             protected override void OnEndMission()
@@ -37,7 +37,7 @@ namespace PowerfulHeroes.CampaignBehaviors
                     agent.BaseHealthLimit /= multiplier;
                     agent.HealthLimit /= multiplier;
                     agent.Health /= multiplier;
-                    Message.Debug($"Revert {agentType} {health}/{healthLimit} -> {agent.Health}/{agent.HealthLimit}");
+                    Message.Debug($"Revert {agent.Name} ({agentType}) {health}/{healthLimit} -> {agent.Health}/{agent.HealthLimit}");
                 }
             }
         }

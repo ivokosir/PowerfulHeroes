@@ -8,25 +8,22 @@
 	<ModuleCategory value="Singleplayer" />
 	<ModuleType value="Community" />
 	<DependedModules>
-		<DependedModule Id="Bannerlord.MBOptionScreen" DependentVersion="v5.0.0" />
-
+		<DependedModule Id="Bannerlord.MBOptionScreen" DependentVersion="v5.0.1" />
 		<DependedModule Id="Native" DependentVersion="v1.0.0" />
 		<DependedModule Id="SandBoxCore" DependentVersion="v1.0.0" />
 		<DependedModule Id="Sandbox" DependentVersion="v1.0.0" />
 		<DependedModule Id="StoryMode" DependentVersion="v1.0.0" />
-		<DependedModule Id="CustomBattle" DependentVersion="v1.0.0" />
 	</DependedModules>
 	<!-- Community Dependency Metadata -->
-	<!-- https://github.com/BUTR/Bannerlord.BUTRLoader#for-modders -->
 	<DependedModuleMetadatas>
-		<DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" DependentVersion="v5.0.0" />
-		<DependedModuleMetadata id="Native" order="LoadBeforeThis" DependentVersion="v1.0.0" />
-		<DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" DependentVersion="v1.0.0" />
-		<DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" DependentVersion="v1.0.0" />
-		<DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" DependentVersion="v1.0.0" />
-		<DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" DependentVersion="v1.0.0" />
+		<DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" version="v5.*" />
+		<DependedModuleMetadata id="Native" order="LoadBeforeThis" version="v1.0.*" />
+		<DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" version="v1.0.*" />
+		<DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="v1.0.*" />
+		<DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" version="v1.0.*" />
+		<DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" version="v1.0.*" optional="true" />
+		<DependedModuleMetadata id="BirthAndDeath" order="LoadBeforeThis" version="v1.0.*" optional="true" />
 	</DependedModuleMetadatas>
-	<!-- Community Dependency Metadata -->
 	<SubModules>
 		<SubModule>
 			<Name value="$modulename$" />
