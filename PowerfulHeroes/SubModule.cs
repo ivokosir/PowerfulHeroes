@@ -1,4 +1,5 @@
 ﻿using PowerfulHeroes.CampaignBehaviors;
+using PowerfulHeroes.MissionBehaviors;
 using PowerfulHeroes.Models;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -40,7 +41,8 @@ namespace PowerfulHeroes
             {
                 Message.Error("Settings failed to load");
             }
-            Message.DisplayModLoadedMessage();
+
+            Message.Info("Loaded");
         }
 
         protected override void OnGameStart(Game game, IGameStarter gameStarter)
@@ -49,13 +51,22 @@ namespace PowerfulHeroes
 
             if (Settings.Instance is null) return;
 
+            gameStarter.AddModel(new PowerfulMissionDifficultyModel());
+            Message.Debug("Loaded PowerfulMissionDifficultyModel");
+
             if (gameStarter is CampaignGameStarter campaignGameStarter)
             {
-                campaignGameStarter.AddBehavior(new PowerfulHealthBehavior());
-                Message.Debug("Loaded PowerfulHealthBehavior Behavior");
-                campaignGameStarter.AddModel(new PowerfulMissionDifficultyModel());
-                Message.Debug("Loaded PowerfulMissionDifficultyModel Model");
+                campaignGameStarter.AddBehavior(new PowerfulHealthCampaignBehavior());
+                Message.Debug("Loaded PowerfulHealthCampaignBehavior");
             }
+        }
+
+        public override void OnMissionBehaviorInitialize(Mission mission)
+        {
+            base.OnMissionBehaviorInitialize(mission);
+
+            mission.AddMissionBehavior(new PowerfulHealthMissionBehaviour());
+            Message.Debug("Loaded PowerfulHealthMissionBehaviour");
         }
     }
 }

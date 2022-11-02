@@ -9,21 +9,16 @@ namespace PowerfulHeroes
             InformationManager.DisplayMessage(new InformationMessage($"{Statics.DisplayName} : {message}", messageColor));
         }
 
-        public static void Info(string message)
-        {
-            ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"));
-        }
-
         public static void Error(string message)
         {
             ShowMessage(message, Color.ConvertStringToColor("#FF000000"));
         }
 
-        public static void DisplayModLoadedMessage()
+        public static void Info(string message)
         {
             if (Settings.Instance!.Debug)
             {
-                Info("Loaded");
+                ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"));
             }
         }
 
