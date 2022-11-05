@@ -62,7 +62,7 @@ namespace PowerfulHeroes
             if (IsHero(agent))
             {
                 if (agent.IsPlayerControlled) return AgentType.Player;
-                if (agent.Team.Mission == null || agent.Team.IsPlayerAlly) return AgentType.Ally;
+                if (agent.Team == null || agent.Team.Mission == null || agent.Team.IsPlayerAlly) return AgentType.Ally;
                 return AgentType.Enemy;
             }
             if (IsHeroHorse(agent))
