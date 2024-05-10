@@ -4,14 +4,14 @@ using MCM.Abstractions.Attributes.v2;
 using MCM.Abstractions.Base.Global;
 using System.Collections.Generic;
 
-namespace PowerfulHeroes
+namespace Bannerlord.PowerfulHeroes
 {
     public class Settings : AttributeGlobalSettings<Settings>
     {
-        public override string Id => Statics.InstanceID;
+        public override string Id => "PowerfulHeroes";
         public override string DisplayName => $"{Statics.DisplayName} {typeof(Settings).Assembly.GetName().Version.ToString(3)}";
-        public override string FolderName => Statics.ModuleFolder;
-        public override string FormatType => Statics.FormatType;
+        public override string FolderName => Id;
+        public override string FormatType => "json2";
 
         private const string DamageMultiplierName = "Damage Recieved Multiplier";
 

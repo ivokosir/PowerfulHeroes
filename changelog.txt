@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.1.6
+Game Versions: v1.2.8,v1.2.9
+* Update to new game version
+* Please check that old Modules/PowerfulHeroes/ folder does not exist in modules, only new Modules/Bannerlord.PowerfulHeroes/ should exist (try to delete and reinstall mod)
+---------------------------------------------------------------------------------------------------
+Version: 1.1.5
+* Fix a bug where you may get more hit points after an arena practice
+---------------------------------------------------------------------------------------------------
+Version: 1.1.4
+* Fix crash on startup of new campaign
+---------------------------------------------------------------------------------------------------
+Version: 1.1.3
+* Fix bug when player doesn't have full health on tournament start
+* Mod now works in Custom Battle!
+---------------------------------------------------------------------------------------------------
+Version: 1.1.2
+* Fix crash when entering town, tavern, etc.
+Version: 1.0.0
+* Initial version
+---------------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.MountAndBlade;
 
-namespace PowerfulHeroes
+namespace Bannerlord.PowerfulHeroes
 {
     public enum AgentType
     { Player, PlayerHorse, Ally, AllyHorse, Enemy, EnemyHorse, Other }

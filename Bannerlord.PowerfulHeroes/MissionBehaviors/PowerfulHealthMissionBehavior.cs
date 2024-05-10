@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
-namespace PowerfulHeroes.MissionBehaviors
+namespace Bannerlord.PowerfulHeroes.MissionBehaviors
 {
     internal class PowerfulHealthMissionBehaviour : MissionLogic
     {

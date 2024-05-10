@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.MountAndBlade;
 
-namespace PowerfulHeroes.Models
+namespace Bannerlord.PowerfulHeroes.Models
 {
     internal class PowerfulMissionDifficultyModel : SandBox.GameComponents.SandboxMissionDifficultyModel
     {

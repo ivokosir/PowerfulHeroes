@@ -1,13 +1,13 @@
-﻿using PowerfulHeroes.CampaignBehaviors;
-using PowerfulHeroes.MissionBehaviors;
-using PowerfulHeroes.Models;
+﻿using Bannerlord.PowerfulHeroes.CampaignBehaviors;
+using Bannerlord.PowerfulHeroes.MissionBehaviors;
+using Bannerlord.PowerfulHeroes.Models;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 
-namespace PowerfulHeroes
+namespace Bannerlord.PowerfulHeroes
 {
     public class SubModule : MBSubModuleBase
     {

@@ -2,7 +2,7 @@
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.MountAndBlade;
 
-namespace PowerfulHeroes.CampaignBehaviors
+namespace Bannerlord.PowerfulHeroes.CampaignBehaviors
 {
     internal class PowerfulHealthCampaignBehavior : CampaignBehaviorBase
     {

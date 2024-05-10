@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.Library;
 
-namespace PowerfulHeroes
+namespace Bannerlord.PowerfulHeroes
 {
     public static class Message
     {
