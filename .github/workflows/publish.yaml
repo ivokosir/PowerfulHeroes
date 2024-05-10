@@ -73,35 +73,13 @@ jobs:
   ###########################
   publish-on-steam:
     needs: ["build-module"]
-    name: Publish Module on Steam
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup
-        uses: butr/actions-common-setup@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Download Module artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: bannerlord
-          path: ./artifact
-        continue-on-error: true
-
-      - name: Download Module artifact Pattern
-        uses: actions/download-artifact@v4
-        with:
-          pattern: bannerlord-*
-          merge-multiple: true
-          path: ./artifact
-        continue-on-error: true
-
-      - uses: CyberAndrii/setup-steamcmd@v1
-
-      - name: Install Bannerlord.SteamWorkshop
-        run: dotnet tool install -g Bannerlord.SteamWorkshop;
-        shell: pwsh
-
-      - run: |
-          bannerlord_steam_workshop loginandpublish -l "${{ secrets.STEAM_LOGIN }}" -p "${{ secrets.STEAM_PASSWORD }}" -f "2882031565" -c "${{ github.workspace }}/artifact/Modules/Bannerlord.PowerfulHeroes" -d  ${{ needs.build-module.outputs.mod_description }};
-        shell: pwsh
+    uses: BUTR/workflows/.github/workflows/release-steam.yml@master
+    with:
+      workshop_id: 2882031565
+      mod_id: Bannerlord.PowerfulHeroes
+      mod_description: ${{ needs.build-module.outputs.mod_description }}
+      artifact_name: bannerlord
+    secrets:
+      STEAM_LOGIN: ${{ secrets.STEAM_WORKSHOP_LOGIN }}
+      STEAM_PASSWORD: ${{ secrets.STEAM_WORKSHOP_PASSWORD }}
+      STEAM_AUTH_CODE: ${{ secrets.STEAM_AUTH_CODE }}
